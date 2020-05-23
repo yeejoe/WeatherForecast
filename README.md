@@ -2,6 +2,8 @@
 
 Weather Forecast
 
+You may find the APK Installer at the root directory
+
 The UI Design are referring to an existing APP Named "Weather Live" on Google Play Store
 
 [x] - Completed
