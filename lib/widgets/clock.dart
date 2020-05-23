@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Clock extends StatelessWidget {
-  DateFormat timeOnlyFormatter = DateFormat("h:m a");
+  DateFormat timeOnlyFormatter = DateFormat("h:mm a");
 
   final now = DateTime.now();
   Stream<DateTime> clock;
