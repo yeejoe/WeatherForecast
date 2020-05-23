@@ -15,7 +15,7 @@ class CurrentLocationView extends StatelessWidget {
         if (snapshot.hasData) {
           return buildLocation(snapshot.data);
         } else if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
+          return Text(snapshot.error.toString(),);
         }
         return Center(child: CircularProgressIndicator());
       },
@@ -40,7 +40,7 @@ class CurrentLocationView extends StatelessWidget {
           ),
           Text(
             this._locationName.isEmpty ? locationName : this._locationName,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontSize: 20,),
           ),
         ],
       ),

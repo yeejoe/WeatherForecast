@@ -91,10 +91,11 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          drawerEdgeDragWidth: 0,
           drawer: Drawer(
             child: Container(
               child: drawerList(),
-              color: Colors.black,
+              color: Colors.black87,
             ),
           )),
     );
@@ -187,41 +188,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ],
     );
-    List<Widget> drawerItems = <Widget>[];
-    userLocations.forEach((location) {
-      drawerItems.add(FlatButton(
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.only(left: 8),
-                child: Text(
-                  location,
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-            _selectedLocation == location &&
-                    _locationMode == WeatherView.UserSelectedLocation
-                ? Align(
-                    alignment: Alignment.centerRight,
-                    child: Icon(
-                      Icons.check,
-                      color: Colors.white,
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
-        onPressed: () {
-          Navigator.pop(context);
-          setState(() {
-            _locationMode = WeatherView.UserSelectedLocation;
-            updateSelectedLocation(location);
-          });
-        },
-      ));
-    });
   }
 
   Widget drawerList() {
@@ -273,6 +239,7 @@ class _HomePageState extends State<HomePage> {
           });
         },
       ));
+      drawerItems.add(Divider(height: 0.5, color: Colors.grey,));
     });
     return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -288,8 +255,9 @@ class _HomePageState extends State<HomePage> {
             color: Colors.white,
             child: FlatButton(
               child: Text(
-                "Edit Locations",
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.w100),
+                "Edit",
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.w400),
               ),
               onPressed: () {
                 Navigator.pop(context);

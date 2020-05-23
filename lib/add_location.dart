@@ -32,9 +32,10 @@ class _AddLocationPageState extends State<AddLocationPage> {
         appBar: AppBar(
           title: const Text('Locations Settings'),
           centerTitle: true,
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.black87,
         ),
-        body: StreamBuilder(
+        body: Container(
+          child: StreamBuilder(
           stream: locationBloc.availableLocationList,
           builder: (context, AsyncSnapshot<Map<String, bool>> snapshot) {
             if (snapshot.hasData) {
@@ -44,7 +45,7 @@ class _AddLocationPageState extends State<AddLocationPage> {
             }
             return Center(child: CircularProgressIndicator());
           },
-        ),
+        ),),
       ),
     );
   }
