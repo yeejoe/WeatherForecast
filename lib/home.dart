@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
   CarouselController buttonCarouselController = CarouselController();
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
   String _selectedLocation = "";
+  List<String> displayedLocations = [];
   int _locationMode = WeatherView.UserSelectedLocation;
   double _locationLat = 0;
   double _locationLon = 0;
@@ -140,7 +141,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildCarousel(List<String> userLocations) {
+    displayedLocations = userLocations;
     final double height = MediaQuery.of(context).size.height;
+    print(userLocations.indexOf(_selectedLocation));
+    print(_selectedLocation);
     return Column(
       children: <Widget>[
         Container(
@@ -233,10 +237,7 @@ class _HomePageState extends State<HomePage> {
         ),
         onPressed: () {
           Navigator.pop(context);
-          setState(() {
-            _locationMode = WeatherView.UserSelectedLocation;
-            updateSelectedLocation(location);
-          });
+          notifyLocationSelection(location);
         },
       ));
       drawerItems.add(Divider(height: 0.5, color: Colors.grey,));
@@ -267,5 +268,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ]);
+  }
+  void notifyLocationSelection(location) async{
+    updateSelectedLocation(location);
+    _locationMode = WeatherView.UserSelectedLocation;
+    _selectedLocation = location;
+    var targetPage = displayedLocations.indexOf(_selectedLocation);
+    if(targetPage > 0) {
+      buttonCarouselController.jumpToPage(targetPage);
+    }
   }
 }

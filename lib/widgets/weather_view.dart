@@ -50,7 +50,10 @@ class WeatherView extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: StreamBuilder(
+            child: Container(
+              height: 110,
+              color: Colors.black54,
+              child: StreamBuilder(
               stream: weatherBloc.forecastWeatherOfSelectedLocation,
               builder: (context, AsyncSnapshot<ForecastWeatherModel> snapshot) {
                 if (snapshot.hasData) {
@@ -60,7 +63,7 @@ class WeatherView extends StatelessWidget {
                 }
                 return Center(child: CircularProgressIndicator());
               },
-            ),
+            ),),
           ),
         ],
       ),
@@ -83,13 +86,9 @@ class WeatherView extends StatelessWidget {
     snapshot.data.list.forEach((model) {
       forecastItems.add(ForecastWeatherView(model));
     });
-    return Container(
-      height: 110,
-      color: Colors.black54,
-      child: ListView(
+    return ListView(
         scrollDirection: Axis.horizontal,
         children: forecastItems,
-      ),
     );
   }
   Widget buildWeatherInfoView(AsyncSnapshot<WeatherModel> snapshot) {
@@ -99,7 +98,7 @@ class WeatherView extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 1,
         child: Container(
-          margin: EdgeInsets.all(48),
+          margin: EdgeInsets.all(32),
           decoration:
               BoxDecoration(shape: BoxShape.circle, color: Colors.black54),
           child: Stack(
